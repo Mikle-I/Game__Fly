@@ -75,7 +75,7 @@ let dvigParig = () => {
 
   //
   let speed = () => {
-    //setInterval(poletRaketi, 10);
+    setInterval(poletRaketi, 10);
   };
 
   // Ракеты
