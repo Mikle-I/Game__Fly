@@ -28,7 +28,7 @@ let dvigParig = () => {
       x: evt.clientX,
       y: evt.clientY,
     };
-
+    onPulMov();
     let onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
       dragged = true;
@@ -58,7 +58,6 @@ let dvigParig = () => {
       }
 
       samolet.style.left = samolet.offsetLeft - shift.x + "px";
-      onPulMov();
     };
 
     let onMouseUp = function (upEvt) {
@@ -88,22 +87,22 @@ let dvigParig = () => {
   };
   setRand();
 
-  let yRock = -50;
+  window.yRocks = -50;
   let poletRaketi = () => {
-    rock.style.top = yRock + 1 + "px";
+    rock.style.top = yRocks + 1 + "px";
     rock.style.left = rand + "px";
 
-    if (yRock > 480) {
-      yRock = -50;
+    if (yRocks > 480) {
+      yRocks = -50;
       setRand();
       count = count + 1;
       setCounter();
 
-      return yRock, count;
+      return yRocks, count;
     }
 
-    yRock = yRock + 1;
-    return yRock, count;
+    yRocks = yRocks + 1;
+    return yRocks, count;
   };
   speed();
   //
@@ -266,6 +265,7 @@ let finish = () => {
     chet.classList.remove("noVisible");
     samolet.classList.remove("noVisible");
     samolet.src = "./img/plane.png";
+
     return count;
   });
 };
@@ -274,9 +274,9 @@ let finish = () => {
 // пуля
 let onPulMov = () => {
   let pul1 = document.querySelector(".bullet");
-  pul1.classList.remove("noVisible");
+
   let pul2 = document.querySelector(".bullet2");
-  pul2.classList.remove("noVisible");
+
   let xSamolet = samolet.style.top;
   let xSamoletF = Number(xSamolet.slice(0, 3));
   let ySamolet = samolet.style.left;
@@ -287,9 +287,60 @@ let onPulMov = () => {
   pul2.style.top = xSamoletF + 3 + "px";
   pul2.style.left = ySamoletF + 38 + "px";
 
+  let coordPuli = xSamoletF + 3;
+  let coordPuli2 = xSamoletF + 3;
+
+  let pulka1 = pul1.cloneNode();
+  let destination = document.querySelector(".samolet__puli");
+  destination.appendChild(pulka1);
+  let pulka2 = pul2.cloneNode();
+  let destination2 = document.querySelector(".samolet__puli");
+  destination2.appendChild(pulka2);
+
   let poletPuli = () => {
-    pul1.style.top = pul1 + 1 + "px";
-    return pul1;
+    if (coordPuli > -10) {
+      pulka1.classList.remove("noVisible");
+      pulka2.classList.remove("noVisible");
+      coordPuli = coordPuli - 1;
+      pulka1.style.top = coordPuli + "px";
+      coordPuli2 = coordPuli - 1;
+      pulka2.style.top = coordPuli + "px";
+
+      //функция взрыва при попадании в ракету
+
+      let vzrivPuli = () => {
+        let xRock = rock.style.top;
+        let xRockF = Number(xRock.slice(0, 3));
+        let xPulka1 = pulka1.style.top;
+        let xPulka1F = Number(xPulka1.slice(0, 3));
+
+        let yRock = rock.style.left;
+        let yRockF = Number(yRock.slice(0, 3));
+        let yPulka1 = pulka1.style.left;
+        let yPulka1F = Number(yPulka1.slice(0, 3));
+
+        if (yPulka1F + 30 >= yRockF && xRockF + 50 === xPulka1F) {
+          let vozvratRacketi = () => {
+            rock.src = "./img/rocket.png";
+            yRocks = -50;
+          };
+          rock.src = "./img/vzriv.gif";
+          setTimeout(vozvratRacketi, 1000);
+
+          return yRock;
+        }
+      };
+
+      setInterval(vzrivPuli, 10);
+      //
+      return coordPuli, coordPuli2;
+    }
+    if (coordPuli === -10) {
+      pulka1.classList.add("noVisible");
+      pulka2.classList.add("noVisible");
+      // coordPuli = xSamoletF + 3;
+      // coordPuli2 = xSamoletF + 3;
+    }
   };
-  setInterval(poletPuli, 10);
+  setInterval(poletPuli, 50);
 };
