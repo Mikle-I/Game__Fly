@@ -1,0 +1,87 @@
+.case {
+  border: 3px solid black;
+  border-radius: 10px;
+  background: rgba(57, 127, 240, 0.82);
+  width: 500px;
+  height: 550px;
+  margin: 0 auto;
+  margin-top: -8px;
+}
+.bullet,
+.bullet2 {
+  width: 0.7%;
+  transform: rotate(-45deg);
+  position: absolute;
+}
+.samolet {
+  width: 4%;
+
+  position: absolute;
+  cursor: move;
+}
+.noVisible {
+  display: none;
+}
+.but--start {
+  background: rgb(199, 194, 194);
+  font-size: 30px;
+  border: 2px black solid;
+  border-radius: 5px;
+  margin-top: 200px;
+  margin-left: 170px;
+}
+.but--start,
+.finish__button:hover {
+  background: rgb(138, 138, 138);
+}
+.rocket {
+  width: 4%;
+  position: absolute;
+  transform: rotate(135deg);
+}
+.chetchik {
+  border: 3px solid black;
+  width: 100px;
+  border-radius: 5px;
+  font-size: 25px;
+  margin-top: 10px;
+  margin-left: 190px;
+  padding-left: 10px;
+  background: rgb(172, 200, 245);
+}
+.cloud,
+.cloud2,
+.cloud3 {
+  width: 5%;
+  position: absolute;
+  opacity: 0.7;
+}
+
+.vzriv {
+  width: 13%;
+}
+.finish {
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: aliceblue;
+  text-align: center;
+  margin-left: 20%;
+  margin-top: 100px;
+}
+.noVisible {
+  display: none;
+}
+.finish__button {
+  width: 150px;
+  margin-left: 25%;
+  font-size: 15px;
+  background-color: rgb(228, 228, 228);
+  border: 2px solid black;
+  border-radius: 10px;
+}
