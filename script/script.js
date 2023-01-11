@@ -325,16 +325,16 @@ let onPulMov = () => {
         ) {
           let vozvratRacketi = () => {
             // Удаление пуль
-            let puliLeft = document
-              .querySelectorAll(".pulii")
-              .forEach(function (a) {
-                a.remove();
-              });
 
             rock.src = "./img/rocket.png";
             setRand(); // функция рандома координаты x
             rock.style.left = rand + "px"; // меняем положение ракеты по Х
             yRocks = -50;
+            let puliLeft = document
+              .querySelectorAll(".pulii")
+              .forEach(function (a) {
+                a.remove();
+              });
           };
 
           rock.src = "./img/vzriv.gif";
