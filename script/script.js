@@ -71,10 +71,14 @@ let dvigParig = () => {
     document.addEventListener("mouseup", onMouseUp);
   });
   //
-
+  let spd = 10;
   //
   let speed = () => {
-    setInterval(poletRaketi, 10);
+    if (count >= 1) {
+      spd = 1;
+      return spd;
+    }
+    setInterval(poletRaketi, spd);
   };
 
   // Ракеты
@@ -108,13 +112,11 @@ let dvigParig = () => {
   //
 
   // счетчик
-
-  let setCounter = () => {
-    counter.innerText = "Cчёт:" + count;
-  };
 };
 //
-
+let setCounter = () => {
+  counter.innerText = "Cчёт:" + count;
+};
 // облака
 let cloud = document.querySelector(".cloud");
 let cloud2 = document.querySelector(".cloud2");
@@ -319,15 +321,21 @@ let onPulMov = () => {
         let yPulka1 = pulka1.style.left;
         let yPulka1F = Number(yPulka1.slice(0, 3));
 
-        if (yPulka1F + 30 >= yRockF && xRockF + 50 === xPulka1F) {
+        if (
+          yPulka1F - 30 <= yRockF &&
+          yPulka1F + 30 >= yRockF &&
+          xRockF + 60 === xPulka1F
+        ) {
           let vozvratRacketi = () => {
             rock.src = "./img/rocket.png";
             yRocks = -50;
           };
-          rock.src = "./img/vzriv.gif";
-          setTimeout(vozvratRacketi, 1000);
 
-          return yRock;
+          rock.src = "./img/vzriv.gif";
+
+          setTimeout(vozvratRacketi, 700);
+
+          return yRocks, count;
         }
       };
 
@@ -342,5 +350,5 @@ let onPulMov = () => {
       // coordPuli2 = xSamoletF + 3;
     }
   };
-  setInterval(poletPuli, 50);
+  setInterval(poletPuli, 5);
 };
