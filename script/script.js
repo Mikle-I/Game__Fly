@@ -71,13 +71,10 @@ let dvigParig = () => {
     document.addEventListener("mouseup", onMouseUp);
   });
   //
-  let spd = 10;
+
   //
   let speed = () => {
-    if (count >= 1) {
-      spd = 1;
-      return spd;
-    }
+    let spd = 1;
     setInterval(poletRaketi, spd);
   };
 
@@ -294,10 +291,10 @@ let onPulMov = () => {
 
   let pulka1 = pul1.cloneNode();
   let destination = document.querySelector(".samolet__puli");
-  destination.appendChild(pulka1);
+  destination.appendChild(pulka1).classList.add("pulii");
   let pulka2 = pul2.cloneNode();
   let destination2 = document.querySelector(".samolet__puli");
-  destination2.appendChild(pulka2);
+  destination2.appendChild(pulka2).classList.add("pulii");
 
   let poletPuli = () => {
     if (coordPuli > -10) {
@@ -327,10 +324,16 @@ let onPulMov = () => {
           xRockF + 60 === xPulka1F
         ) {
           let vozvratRacketi = () => {
-            rock.src = "./img/rocket.png";
+            // Удаление пуль
+            let puliLeft = document
+              .querySelectorAll(".pulii")
+              .forEach(function (a) {
+                a.remove();
+              });
 
+            rock.src = "./img/rocket.png";
             setRand(); // функция рандома координаты x
-            rock.style.left = rand + "px"; // меняем положение ракеты
+            rock.style.left = rand + "px"; // меняем положение ракеты по Х
             yRocks = -50;
           };
 
