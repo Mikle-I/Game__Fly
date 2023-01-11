@@ -84,8 +84,8 @@ let dvigParig = () => {
   // Ракеты
 
   let xRock = 600;
-  let rand;
-  let setRand = () => {
+  window.rand;
+  window.setRand = () => {
     rand = Math.floor(450 + Math.random() * (800 + 1 - 450));
     return rand;
   };
@@ -328,6 +328,9 @@ let onPulMov = () => {
         ) {
           let vozvratRacketi = () => {
             rock.src = "./img/rocket.png";
+
+            setRand(); // функция рандома координаты x
+            rock.style.left = rand + "px"; // меняем положение ракеты
             yRocks = -50;
           };
 
